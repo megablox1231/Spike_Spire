@@ -1,0 +1,26 @@
+Add small push after reaching new level and change level design to fit that
+Add small pause after respawning maybe
+Possibly add an input buffer
+LevelLoadAdditive thing
+how to reset level when dead																						(Done)
+stacked tower of triangles?
+forward strike																										(Done)
+up strike
+levers
+chains
+old guy
+slave trader
+dream/sleep area
+projectile triangles
+homing projectile triangles
+giant projectile triangle
+painted monsters nice sprites
+jailed
+meet round guy in jail
+rebels
+wanted poster
+holding down increases gravity
+teach column jumps
+add zip line triangles?
+for a few levels, close behind with growing spikes
+Do little cutscene thing for 1st closing spikes level

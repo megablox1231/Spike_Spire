@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 91699c5d8a0f8d0419f6cc24aeb06836, type: 3}
+    - {fileID: 2800000, guid: 0ce770644216b684786f5fa2a59a60ed, type: 3}
+    - {fileID: 2800000, guid: b1cba23cea974e543bbb602f61169f92, type: 3}
+    - {fileID: 2800000, guid: 877ffdf652dedae43842c466c57bb86f, type: 3}
+    - {fileID: 2800000, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+    - {fileID: 102900000, guid: a3ce3c5e4938f564a926e145d410eec3, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 9614a770ae9ab3e478665d43789c7b83, type: 3}
+  - {fileID: 21300000, guid: 6d6c0c9253a9265459c1e1d1c1082ad6, type: 3}
+  - {fileID: 21300000, guid: 0ce770644216b684786f5fa2a59a60ed, type: 3}
+  - {fileID: 21300000, guid: 0ee0da967ed18db4e8cd2457dd159ee2, type: 3}
+  - {fileID: 21300000, guid: 9db023a6475fc1f4e95237244ca0d903, type: 3}
+  - {fileID: 21300000, guid: 533110f6fcb676547a959b5c354fefb0, type: 3}
+  - {fileID: 3606395829426473573, guid: 877ffdf652dedae43842c466c57bb86f, type: 3}
+  - {fileID: 1988795196888508458, guid: 877ffdf652dedae43842c466c57bb86f, type: 3}
+  - {fileID: 5712320505039113165, guid: 877ffdf652dedae43842c466c57bb86f, type: 3}
+  - {fileID: 374776376121214031, guid: 877ffdf652dedae43842c466c57bb86f, type: 3}
+  - {fileID: 2307411583473454725, guid: 877ffdf652dedae43842c466c57bb86f, type: 3}
+  - {fileID: 6520831083669732787, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: 8515823449541528699, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: 2819995807473740704, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: -7698438711733617983, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: 7152773994909519634, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: 8184183821946274806, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: -5916111621032075781, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: 8142833471975737436, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: 785415735895392957, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: -6762374151819435008, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: -5224259102602109400, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: -6103598253651149806, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: 4802183248183177395, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: 1476247664374290286, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: -8324248506441371594, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: -9040927780986773798, guid: ccaa38c7550ad754a8c8cd9d14ca14a7, type: 3}
+  - {fileID: -237677717234775638, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: -7044393189403324208, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: -5242228624057590084, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: 8406498139987780966, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: -5083718658325791148, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: 7258309216818873807, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: -1980124101456345333, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: 4143202283678911348, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: 6949165100800021510, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: -7068062888796342486, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: 1034339366829754049, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: 341036824219571354, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: 6778741773319371648, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: 2737715125331485716, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: -1261866358660995842, guid: c576d9e8f34784849b83b77dc1858a5c, type: 3}
+  - {fileID: 21300000, guid: 8712f9aa9f45db2469dd14d6335d1935, type: 3}
+  - {fileID: 21300000, guid: 99fd46baf1c941b47ad095ea31bc7254, type: 3}
+  - {fileID: 3013876526210702452, guid: b1cba23cea974e543bbb602f61169f92, type: 3}
+  - {fileID: 3535121741468305366, guid: b1cba23cea974e543bbb602f61169f92, type: 3}
+  - {fileID: 21300000, guid: c3d1a79c77a6aa2498a7714a00359306, type: 3}
+  - {fileID: 21300000, guid: 91699c5d8a0f8d0419f6cc24aeb06836, type: 3}
+  - {fileID: 21300000, guid: a3a18c8d13ddf1f4aba3fbf9a2f1afee, type: 3}
+  - {fileID: 21300000, guid: b8ea85bda53934748a6ff9aca3fb454b, type: 3}
+  - {fileID: 21300000, guid: f5c4310ede0959543b53ff498136085b, type: 3}
+  - {fileID: 21300000, guid: 5175125e9214d6c4b849d2617b7be364, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Spritesheet_002
+  - Spritesheet_001
+  - PlayerIdle
+  - Spritesheet_004
+  - Spritesheet_001
+  - Spritesheet_000
+  - Spike Block Sheet_4
+  - Spike Block Sheet_0
+  - Spike Block Sheet_1
+  - Spike Block Sheet_2
+  - Spike Block Sheet_3
+  - Long Spikes Sheet_8
+  - Long Spikes Sheet_9
+  - Long Spikes Sheet_6
+  - Long Spikes Sheet_7
+  - Long Spikes Sheet_4
+  - Long Spikes Sheet_5
+  - Long Spikes Sheet_2
+  - Long Spikes Sheet_3
+  - Long Spikes Sheet_0
+  - Long Spikes Sheet_1
+  - Long Spikes Sheet_15
+  - Long Spikes Sheet_14
+  - Long Spikes Sheet_11
+  - Long Spikes Sheet_10
+  - Long Spikes Sheet_13
+  - Long Spikes Sheet_12
+  - Desert Ground Sheet_14
+  - Desert Ground Sheet_10
+  - Desert Ground Sheet_11
+  - Desert Ground Sheet_12
+  - Desert Ground Sheet_13
+  - Desert Ground Sheet_5
+  - Desert Ground Sheet_4
+  - Desert Ground Sheet_7
+  - Desert Ground Sheet_6
+  - Desert Ground Sheet_1
+  - Desert Ground Sheet_0
+  - Desert Ground Sheet_3
+  - Desert Ground Sheet_2
+  - Desert Ground Sheet_9
+  - Desert Ground Sheet_8
+  - Spritesheet_003
+  - Spritesheet_000
+  - Safe Terrain Sheet_1
+  - Safe Terrain Sheet_0
+  - Spritesheet_003
+  - SpikeBlock
+  - Spritesheet_000
+  - Spritesheet_001
+  - Spritesheet_002
+  - Spritesheet_002
+  m_Tag: New Sprite Atlas
+  m_IsVariant: 0

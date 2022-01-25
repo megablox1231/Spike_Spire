@@ -1,0 +1,631 @@
+fileFormatVersion: 2
+guid: ccaa38c7550ad754a8c8cd9d14ca14a7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 785415735895392957
+    second: Long Spikes Sheet_0
+  - first:
+      213: -6762374151819435008
+    second: Long Spikes Sheet_1
+  - first:
+      213: -5916111621032075781
+    second: Long Spikes Sheet_2
+  - first:
+      213: 8142833471975737436
+    second: Long Spikes Sheet_3
+  - first:
+      213: 7152773994909519634
+    second: Long Spikes Sheet_4
+  - first:
+      213: 8184183821946274806
+    second: Long Spikes Sheet_5
+  - first:
+      213: 2819995807473740704
+    second: Long Spikes Sheet_6
+  - first:
+      213: -7698438711733617983
+    second: Long Spikes Sheet_7
+  - first:
+      213: 6520831083669732787
+    second: Long Spikes Sheet_8
+  - first:
+      213: 8515823449541528699
+    second: Long Spikes Sheet_9
+  - first:
+      213: -8141500978464081483
+    second: Long Spikes Sheet_0
+  - first:
+      213: -972702882978548916
+    second: Long Spikes Sheet_1
+  - first:
+      213: -6101901274098528087
+    second: Long Spikes Sheet_2
+  - first:
+      213: -1387259249035780714
+    second: Long Spikes Sheet_3
+  - first:
+      213: 8563976234477446874
+    second: Long Spikes Sheet_4
+  - first:
+      213: 8826678027889583622
+    second: Long Spikes Sheet_5
+  - first:
+      213: 2922047761761125516
+    second: Long Spikes Sheet_6
+  - first:
+      213: 8992275128215327302
+    second: Long Spikes Sheet_7
+  - first:
+      213: -4428928815618203154
+    second: Long Spikes Sheet_8
+  - first:
+      213: 905355698716751110
+    second: Long Spikes Sheet_9
+  - first:
+      213: 1476247664374290286
+    second: Long Spikes Sheet_10
+  - first:
+      213: 4802183248183177395
+    second: Long Spikes Sheet_11
+  - first:
+      213: -9040927780986773798
+    second: Long Spikes Sheet_12
+  - first:
+      213: -4845782268016613189
+    second: Long Spikes Sheet_10
+  - first:
+      213: 917078223754499269
+    second: Long Spikes Sheet_11
+  - first:
+      213: 1769152434116610029
+    second: Long Spikes Sheet_12
+  - first:
+      213: -8324248506441371594
+    second: Long Spikes Sheet_13
+  - first:
+      213: -6103598253651149806
+    second: Long Spikes Sheet_14
+  - first:
+      213: -5224259102602109400
+    second: Long Spikes Sheet_15
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Long Spikes Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 1, y: 7}
+        - {x: -1, y: 7}
+        - {x: -8, y: -6}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: -6}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b93720eef3930f80800000000000000
+      internalID: -8141500978464081483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 224
+        width: 64
+        height: 32
+      alignment: 9
+      pivot: {x: 0.125, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -29, y: 16}
+        - {x: -32, y: 16}
+        - {x: -32, y: -16}
+        - {x: -29, y: -16}
+        - {x: 32, y: -1}
+        - {x: 32, y: 1}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c43b01ca1e34082f0800000000000000
+      internalID: -972702882978548916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 224
+        width: 64
+        height: 32
+      alignment: 9
+      pivot: {x: 0.875, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 29, y: 16}
+        - {x: -32, y: 1}
+        - {x: -32, y: -1}
+        - {x: 29, y: -16}
+        - {x: 32, y: -16}
+        - {x: 32, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a09ad6de11b15ba0800000000000000
+      internalID: -6101901274098528087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7, y: -1}
+        - {x: 6, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
+        - {x: 6, y: 8}
+        - {x: -7, y: 1}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69dd8d120177fbce0800000000000000
+      internalID: -1387259249035780714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 8}
+        - {x: -8, y: -8}
+        - {x: -6, y: -8}
+        - {x: 7, y: -1}
+        - {x: 7, y: 1}
+        - {x: -6, y: 8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad66ae8e20b59d670800000000000000
+      internalID: 8563976234477446874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 8}
+        - {x: -8, y: 6}
+        - {x: -1, y: -7}
+        - {x: 1, y: -7}
+        - {x: 8, y: 6}
+        - {x: 8, y: 8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 606aa1f86e8ae7a70800000000000000
+      internalID: 8826678027889583622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 176
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -1, y: 16}
+        - {x: -8, y: -12}
+        - {x: -8, y: -16}
+        - {x: 8, y: -16}
+        - {x: 8, y: -12}
+        - {x: 1, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c844f7825f23d8820800000000000000
+      internalID: 2922047761761125516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 192
+        width: 32
+        height: 16
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -8}
+        - {x: -12, y: -8}
+        - {x: 16, y: -1}
+        - {x: 16, y: 1}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 642dad3069afacc70800000000000000
+      internalID: 8992275128215327302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 176
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 16}
+        - {x: -8, y: 12}
+        - {x: -1, y: -16}
+        - {x: 1, y: -16}
+        - {x: 8, y: 12}
+        - {x: 8, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee1e59925b84982c0800000000000000
+      internalID: -4428928815618203154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 144
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.25, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 32}
+        - {x: -16, y: 29}
+        - {x: -1, y: -32}
+        - {x: 1, y: -32}
+        - {x: 16, y: 29}
+        - {x: 16, y: 32}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60533611638709c00800000000000000
+      internalID: 905355698716751110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 144
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.25, y: 0.125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 1, y: 32}
+        - {x: -1, y: 32}
+        - {x: -16, y: -29}
+        - {x: -16, y: -32}
+        - {x: 16, y: -32}
+        - {x: 16, y: -29}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb8abf783b250ccb0800000000000000
+      internalID: -4845782268016613189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 176
+        width: 32
+        height: 16
+      alignment: 9
+      pivot: {x: 0.75, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 12, y: 8}
+        - {x: -16, y: 1}
+        - {x: -16, y: -1}
+        - {x: 12, y: -8}
+        - {x: 16, y: -8}
+        - {x: 16, y: 8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c4122e19cd1abc00800000000000000
+      internalID: 917078223754499269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 128
+        height: 48
+      alignment: 9
+      pivot: {x: 0.9375, y: 0.16666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 61, y: 24}
+        - {x: -61, y: 2}
+        - {x: -64, y: 1}
+        - {x: -64, y: 0}
+        - {x: -61, y: -1}
+        - {x: 45, y: -21}
+        - {x: 64, y: -24}
+        - {x: 64, y: 24}
+      tessellationDetail: 0
+      bones: []
+      spriteID: de7c905f3ca4d8810800000000000000
+      internalID: 1769152434116610029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 128
+      alignment: 9
+      pivot: {x: 0.16666667, y: 0.9375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -24, y: 64}
+        - {x: -22, y: 49}
+        - {x: -1, y: -61}
+        - {x: 0, y: -64}
+        - {x: 1, y: -64}
+        - {x: 2, y: -61}
+        - {x: 22, y: 49}
+        - {x: 24, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6307c7f46145a7c80800000000000000
+      internalID: -8324248506441371594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 48
+        height: 128
+      alignment: 9
+      pivot: {x: 0.16666667, y: 0.0625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -1, y: 64}
+        - {x: -2, y: 61}
+        - {x: -23, y: -54}
+        - {x: -24, y: -64}
+        - {x: 24, y: -64}
+        - {x: 23, y: -55}
+        - {x: 1, y: 61}
+        - {x: 0, y: 64}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21cbd6ff9b9ab4ba0800000000000000
+      internalID: -6103598253651149806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Long Spikes Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 48
+      alignment: 9
+      pivot: {x: 0.0625, y: 0.16666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -49, y: 22}
+        - {x: -64, y: 24}
+        - {x: -64, y: -24}
+        - {x: -49, y: -22}
+        - {x: 61, y: -1}
+        - {x: 64, y: 0}
+        - {x: 64, y: 1}
+        - {x: 61, y: 2}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82edcc68604bf77b0800000000000000
+      internalID: -5224259102602109400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

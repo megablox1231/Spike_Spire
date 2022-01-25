@@ -1,0 +1,11 @@
+Bounds of player boxCollider2D interpolates between .5 and .50000000001 constantly
+When respawing, if left or right pressed at specific time, player teleports to the wall
+Fix Blockers
+Correctly synchronise spikes
+changed tag of playerCollider from nothing to "Player"
+fix shitty colliders on elongating spikes that dont work half the time (probably manually stop at inputted certain locale without colliders and when brittle spikes are gone, go full length)
+Spawnpoint prefab changes when going through levels automatically
+Add short pause when respawning
+Forward Slash not recognizing it is touching brittle spike block layer when paired with obstacle layer
+isTouchingLayers For SwordJump now inaccurate
+Camera might not play nice with non rectangular shapes
