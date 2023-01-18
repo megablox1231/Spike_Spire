@@ -1,0 +1,112 @@
+Area1
+  dialogTexts[0]
+    character s = Puddle
+    text s = Hello, ... down here!
+  dialogTexts[1]
+    character s = Puddle
+    text s = Always nice to meet a fellow traveller. Sorry you have to see me like this, I'm normally much more composed.
+  dialogTexts[2]
+    character s = Puddle
+    text s = Like you, I was busy enjoying the incredible sights here when my foot got caught on the terrain here. Seems like you can't walk or jump on it, so best to just avoid it.
+  dialogTexts[3]
+    character s = Puddle
+    text s = I think I'm gonna be stuck here for a while, so you can go on ahead. I'm sure one of the locals will help me out eventually. Just gotta figure out how to get their attention.
+Area2Caged
+  dialogTexts[0]
+    character s = Traveller
+    text s = Hey, ... up here!
+  dialogTexts[1]
+    character s = Traveller
+    text s = It's me, the puddle from before! I seem to have gotten myself into trouble again.
+  dialogTexts[2]
+    character s = Traveller
+    text s = I found the key to get through the door to the right, but trapped myself here in the process.
+  dialogTexts[3]
+    character s = Traveller
+    text s = I'd greatly appreciate it if you could find someone to help get me out of here. The view's actually quite nice from up here, but I'd like to move on.
+Area2Puddle
+  dialogTexts[0]
+    character s = Puddle
+    text s = Well, uh thanks for getting me out. I think the key landed somewhere around here.
+  dialogTexts[1]
+    character s = Puddle
+    text s = Its gonna take me a few minutes to reform myself so you should take it and go on ahead. I don't want to slow you down. (The view isn't half bad here either)
+ElevatorShaft
+  dialogTexts[0]
+    character s = Traveller
+    text s = Felt like this whole thing was gonna come down. Maybe I pressed the wrong combination?
+ElevatorCrash
+  dialogTexts[0]
+    character s = Puddle
+    text s = (Should've just taken the stairs...)
+  dialogTexts[1]
+    character s = Puddle
+    text s = Oh hey, when did you get here?
+  dialogTexts[2]
+    character s = Puddle
+    text s = I'm trying to get to the top of this place as a sort of capstone to my trip. Some helpful people pointed me to the elevators, but I think I misunderstood their instructions and crashed the cabin. (So embarrasing)
+  dialogTexts[3]
+    character s = Puddle
+    text s = I should go tell them what happened, you can go on ahead. Hopefully, next time we meet, it'll be at eye level.
+FinalScene1
+  dialogTexts[0]
+    character s = TreasureHunter
+    text s = Finally, something worth taking in this godforsaken land!
+  dialogTexts[1]
+    character s = StandingTri
+    text s = Take? Do you have any idea what you're looking at?
+  dialogTexts[2]
+    character s = TreasureHunter
+    text s = Oh, hello! Didn't see you there. (Must be one of the locals the traveller from earlier was talking about)
+  dialogTexts[3]
+    character s = TreasureHunter
+    text s = Uh, well you see, I'm an archeologist and I've been sent here and an important preservation mission.
+  dialogTexts[4]
+    character s = StandingTri
+    text s = Yea well, last time I checked this isn't some long dead civilization, I kind of still live here.
+  dialogTexts[5]
+    character s = TreasureHunter
+    text s = Just you nine in this entire structure? This place is practically empty. (Speaking of, I still may be able to grab that relic if I'm quick...)
+  dialogTexts[6]
+    character s = FloorTri
+    text s = Empty? Buddy, there's millions of us here!
+  dialogTexts[6]
+    character s = TreasureHunter
+    text s = Holy shit the floor can talk!
+FinalScene2
+  dialogTexts[0]
+    character s = Traveller
+    text s = Wow, I actually made it!
+  dialogTexts[1]
+    character s = Traveller
+    text s = Oh, hey! Looks like you couldn't resist the fantastic view up here either!
+  dialogTexts[2]
+    character s = TreasureHunter
+    text s = Dude, ... the floors are alive.
+  dialogTexts[3]
+    character s = Traveller
+    text s = The walls, too. Though they didn't start talking until after that first fall I took which might be concerning.
+  dialogTexts[4]
+    character s = FloorTri
+    text s = We don't have much interest in talking to a couple of tourists who sneak in through the back. Next time go through the front and we may be more friendly.
+  dialogTexts[5]
+    character s = StandingTri
+    text s = Well, back to the topic on hand. This here is one of our most prized possessions, a primordial relic given to us by the divine itself.
+  dialogTexts[6]
+    character s = Traveller
+    text s = Wow, didn't know you had an interest in history too traveler! (I also thought you were mute this entire time too)
+  dialogTexts[7]
+    character s = TreasureHunter
+    text s = Uhhhhhhhhhhhhh
+  dialogTexts[8]
+    character s = Traveller
+    text s = Oh, I have just the thing for you too! There's a souvenir shop on the floor just below us with replicas of that statue, I'm sure you'd love to take one home.
+  dialogTexts[9]
+    character s = TreasureHunter
+    text s = I
+  dialogTexts[10]
+    character s = StandingTri
+    text s = Yes, that sounds like a great idea! Maybe pick up some of our specialty triangle ice cream while you're at it. Learn about the area and have a little fun.
+  dialogTexts[11]
+    character s = TreasureHunter
+    text s = Y-Yea... sounds good. (I think I need a new job)

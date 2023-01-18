@@ -16,26 +16,42 @@ public class GameMaster : MonoBehaviour
     public Transform playerPrefab;
     public Transform spawnPoint;
     public int spawnDelay = 2;
+    public string testSceneName = "";
+    public static string sceneName;
     [HideInInspector]
-    public bool playerHasForwardSlash; //true if the player has the forward slash ability
+    public bool playerHasForwardSlash, dollyShotDone;
+    [HideInInspector]
+    public string checkPoint;
 
     CinemachineVirtualCamera virtualCam;
     CinemachineConfiner confiner;
-    Stack<string> camTriggers;  //camTriggers that have been passed
+    string curTrigger = "";
     bool inLargeArea;   //true if in a moving area (currently not used)
     GameObject curPlayer;
+    SaveSystem saveSystem;
+    AudioSource audioSrc;
 
     void Awake() {
         if (gm == null) {
             gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameMaster>();
         }
-        playerHasForwardSlash = false;  //TODO: might not fire off before accessed by player
+        playerHasForwardSlash = true;  //TODO: might not fire off before accessed by player
     }
 
     private void Start() {
-        camTriggers = new Stack<string>();
-        inLargeArea = false;
         curPlayer = GameObject.FindGameObjectWithTag("Player");
+        // Need to check parent because player object and child "Player Collider" both have player tag
+        if (curPlayer.transform.parent != null && curPlayer.transform.parent.tag == "Player") {
+            curPlayer = curPlayer.transform.parent.gameObject;
+        }
+        if (testSceneName != "") {
+            sceneName = testSceneName;
+        }
+        saveSystem = new SaveSystem();
+
+        if (confiner == null) { //TODO: just for editor stuff, remove for full build
+            InitCineMachine(GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>());
+        }
     }
 
     public IEnumerator _RespawnPlayer() {
@@ -53,10 +69,29 @@ public class GameMaster : MonoBehaviour
         //GameObject particlesClone = Instantiate(spawnPrefab, spawnPoint.position, spawnPoint.rotation).gameObject;
     }
 
+    //reloads the active scene, destroys player, and calls respawn coroutine
     public static void KillPlayer(GameObject player) {
-        SceneManager.LoadScene("Demo_3");
+        SceneManager.LoadScene(sceneName);
         Destroy(player); // if collider not child then just destory game object
         gm.StartCoroutine(gm._RespawnPlayer());
+    }
+
+
+    public void SetTrigger(string name, bool save=true) {
+        curTrigger = name;
+
+        if (save) {
+            saveSystem.SetProgress(sceneName, name);
+            saveSystem.Save();
+        }
+    }
+
+    public bool IsCurTrigger(string name) {
+        return curTrigger.Equals(name);
+    }
+
+    public void ClearTrigger() {
+        curTrigger = null;
     }
 
 
@@ -66,21 +101,8 @@ public class GameMaster : MonoBehaviour
 
         confiner = virtualCam.GetComponent<CinemachineConfiner>();
         confiner.m_ConfineScreenEdges = true;
+        inLargeArea = true;
     }
-
-
-    public void AddDestroyedTrigger(string name) {
-        camTriggers.Push(name);
-    }
-
-    public bool ContainsTrigger(string name) {
-        return camTriggers.Contains(name);
-    }
-
-    public bool IsCurTrigger(string name) {
-        return camTriggers.Peek() == name;
-    }
-
 
     //Transitions all camera settings to be able to move
     public void ChangeConfinerBounds(PolygonCollider2D boundingShape) {

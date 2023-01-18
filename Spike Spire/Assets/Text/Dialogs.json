@@ -1,0 +1,187 @@
+{
+  "allDialogs": [
+    {
+      "id": "Area2",
+      "dialogTexts": [
+        {
+          "character": "Puddle",
+          "text": "Hello, ... down here!"
+        },
+        {
+          "character": "Puddle",
+          "text": "Always nice to meet a fellow traveller. Sorry you have to see me like this, I'm normally much more composed."
+        },
+        {
+          "character": "Puddle",
+          "text": "Like you, I was busy enjoying the incredible sights here when my foot got caught on this terrain. Seems like you can't walk or jump on it, so best to just avoid it."
+        },
+        {
+          "character": "Puddle",
+          "text": "I think I'm gonna be stuck here for a while, so you can go on ahead. Should be easy to just slash through that block in the way."
+        },
+        {
+          "character": "Puddle",
+          "text": "I'm sure one of the locals will help me out eventually. Just gotta figure out how to get their attention."
+        }
+      ]
+    },
+    {
+      "id": "Area3Caged",
+      "dialogTexts": [
+        {
+          "character": "Traveller",
+          "text": "Hey, ... up here!"
+        },
+        {
+          "character": "Traveller",
+          "text": "It's me, the puddle from before! I seem to have gotten myself into trouble again."
+        },
+        {
+          "character": "Traveller",
+          "text": "I found the key to get through the door to the right, but trapped myself here in the process."
+        },
+        {
+          "character": "Traveller",
+          "text": "I'd greatly appreciate it if you could find someone to help get me out of here. The view's actually quite nice, but I'd like to move on."
+        }
+      ]
+    },
+    {
+      "id": "Area3Puddle",
+      "dialogTexts": [
+        {
+          "character": "Puddle",
+          "text": "Well, uh thanks for getting me out. I think the key landed somewhere around here."
+        },
+        {
+          "character": "Puddle",
+          "text": "Its gonna take me a few minutes to reform myself so you should take it and go on ahead. I don't want to slow you down. (The view isn't half bad here either)"
+        }
+      ]
+    },
+    {
+      "id": "ElevatorShaft",
+      "dialogTexts": [
+        {
+          "character": "Traveller",
+          "text": "Felt like this whole elevator was gonna come down! Maybe I pressed the wrong combination?"
+        },
+        {
+          "character": "Traveller",
+          "text": "So many buttons though, which one goes up?..."
+        }
+      ]
+    },
+    {
+      "id": "ElevatorCrash",
+      "dialogTexts": [
+        {
+          "character": "Puddle",
+          "text": "(Should've just taken the stairs...)"
+        },
+        {
+          "character": "Puddle",
+          "text": "Oh hey, when did you get here?"
+        },
+        {
+          "character": "Puddle",
+          "text": "I'm trying to get to the top of this place as a sort of capstone to my trip. Some helpful people pointed me to the elevators, but I think I misunderstood their instructions and crashed the cabin. (So embarrasing)"
+        },
+        {
+          "character": "Puddle",
+          "text": "I should go tell them what happened, you can go on ahead. Hopefully, next time we meet, it'll be at eye level."
+        }
+      ]
+    },
+    {
+      "id": "FinalScene1",
+      "dialogTexts": [
+        {
+          "character": "TreasureHunter",
+          "text": "Finally, something worth taking in this godforsaken land!"
+        },
+        {
+          "character": "StandingTri",
+          "text": "Take? Do you have any idea what you're looking at?"
+        },
+        {
+          "character": "TreasureHunter",
+          "text": "Oh, hello! Didn't see you there. (Must be one of the locals the traveller from earlier was talking about)"
+        },
+        {
+          "character": "TreasureHunter",
+          "text": "Uh, well you see, I'm an archeologist and I've been sent here and an important preservation mission."
+        },
+        {
+          "character": "StandingTri",
+          "text": "Yea well, last time I checked this isn't some long dead civilization, I kind of still live here."
+        },
+        {
+          "character": "TreasureHunter",
+          "text": "Just you nine in this entire structure? This place is practically empty. (Speaking of, I still may be able to grab that relic if I'm quick...)"
+        },
+        {
+          "character": "FloorTri",
+          "text": "Empty? Buddy, there's millions of us here!"
+        },
+        {
+          "character": "TreasureHunter",
+          "text": "Holy @*#t, the floor can talk!"
+        }
+      ]
+    },
+    {
+      "id": "FinalScene2",
+      "dialogTexts": [
+        {
+          "character": "Traveller",
+          "text": "Wow, I actually made it!"
+        },
+        {
+          "character": "Traveller",
+          "text": "Oh, hey! Looks like you couldn't resist the fantastic view up here either!"
+        },
+        {
+          "character": "TreasureHunter",
+          "text": "Dude, ... the floor is alive."
+        },
+        {
+          "character": "Traveller",
+          "text": "The walls, too. Though they didn't start talking until after that first fall I took which might be concerning."
+        },
+        {
+          "character": "FloorTri",
+          "text": "We don't have much interest in talking to a couple of tourists who sneak in through the back. Next time go through the front and we may be more friendly."
+        },
+        {
+          "character": "StandingTri",
+          "text": "Well, back to the topic on hand. This here is one of our most prized possessions, a primordial relic given to us by the divine itself."
+        },
+        {
+          "character": "Traveller",
+          "text": "Wow, didn't know you had an interest in history too traveler! (I also thought you were mute this entire time too)"
+        },
+        {
+          "character": "TreasureHunter",
+          "text": "Uhhhhhhhhhhhhh"
+        },
+        {
+          "character": "Traveller",
+          "text": "Oh, I have just the thing for you too! There's a souvenir shop on the floor just below us with replicas of that statue, I'm sure you'd love to take one home."
+        },
+        {
+          "character": "TreasureHunter",
+          "text": "I"
+        },
+        {
+          "character": "StandingTri",
+          "text": "Yes, that sounds like a great idea! Maybe pick up some of our specialty triangle ice cream while you're at it. Learn about the area and have a little fun."
+        },
+        {
+          "character": "TreasureHunter",
+          "text": "Y-Yea... sounds good. (I think I need a new job)"
+        }
+      ]
+    }
+  ]
+}

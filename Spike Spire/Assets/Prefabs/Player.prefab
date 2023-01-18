@@ -49,7 +49,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.25, y: 0.25}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -72,6 +72,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -123,6 +124,7 @@ GameObject:
   - component: {fileID: 889816799908413275}
   - component: {fileID: 889816799908413264}
   - component: {fileID: 3560585401961592505}
+  - component: {fileID: 2651357850112970744}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -159,6 +161,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -235,12 +238,42 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
+  SwordJumpMask:
+    serializedVersion: 2
+    m_Bits: 0
+  SlashMask:
+    serializedVersion: 2
+    m_Bits: 0
+  NoSlashMask:
+    serializedVersion: 2
+    m_Bits: 0
+  brittleSBMask:
+    serializedVersion: 2
+    m_Bits: 0
+  deadlySBMask:
+    serializedVersion: 2
+    m_Bits: 0
+  jumpCollider: {fileID: 889816799173261440}
+  slashCollider: {fileID: 0}
+  brittleContact:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   horizontalRayCount: 0
   verticalRayCount: 0
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   collider: {fileID: 0}
-  jumpCollider: {fileID: 889816799173261440}
   maxSlopeAngle: 80
   playerInput: {x: 0, y: 0}
 --- !u!114 &889816799908413274
@@ -258,6 +291,11 @@ MonoBehaviour:
   maxJumpHeight: 7
   minJumpHeight: 1
   timeToJumpApex: 0.65
+  moveSpeed: 1.5
+  maxYVelocity: 20
+  forwardSlashSpeed: 3
+  pauseGravTime: 0
+  frozen: 0
   wallJumpClimb: {x: 0, y: 0}
   wallJumpOff: {x: 0, y: 0}
   wallLeap: {x: 0, y: 0}
@@ -275,6 +313,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c470cec77c3e15e4f998b1f098260ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpDelay: 0
+  hasForwardSlash: 0
+  isSwordJumping: 0
+  holdingDown: 0
 --- !u!50 &889816799908413264
 Rigidbody2D:
   serializedVersion: 4
@@ -309,3 +351,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  invincible: 0
+--- !u!114 &2651357850112970744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889816799908413272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c2239f4384ba844ad28eff28a0b9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpLandSand: {fileID: 0}

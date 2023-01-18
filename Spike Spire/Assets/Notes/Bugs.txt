@@ -1,11 +1,12 @@
 Bounds of player boxCollider2D interpolates between .5 and .50000000001 constantly
 When respawing, if left or right pressed at specific time, player teleports to the wall
-Fix Blockers
-Correctly synchronise spikes
-changed tag of playerCollider from nothing to "Player"
-fix shitty colliders on elongating spikes that dont work half the time (probably manually stop at inputted certain locale without colliders and when brittle spikes are gone, go full length)
-Spawnpoint prefab changes when going through levels automatically
+because player collider moves a bit when changing direction, player can phase through walls -- see demo_3 last level
 Add short pause when respawning
 Forward Slash not recognizing it is touching brittle spike block layer when paired with obstacle layer
 isTouchingLayers For SwordJump now inaccurate
 Camera might not play nice with non rectangular shapes
+1st cam boundry trigger can screw with collisions and transitions between levels (happens often in full build), dying once fixes this
+Transitions occur on unscaled time so pausing does not pause them
+Pause Menu buttons not working in build
+One way platforms have skinny colliders to try to prevent standing on bottom, but still possible
+restarting game from menu in parallax section causes parallax to be off

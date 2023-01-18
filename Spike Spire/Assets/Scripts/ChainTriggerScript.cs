@@ -23,7 +23,6 @@ public class ChainTriggerScript : MonoBehaviour
             animators[i].enabled = false;
         }
         target = objects.transform.localPosition - new Vector3(0, fallDist, 0);
-        Debug.Log(objects.transform.localPosition + " " + target);
     }
     
     private void Update() {
@@ -35,8 +34,7 @@ public class ChainTriggerScript : MonoBehaviour
     //collision is of the other gameObject
     private void OnTriggerEnter2D(Collider2D collision) {
         //break chain if hit by sword jump or forward slash
-        Debug.Log("Hey1");
-        if (collision.name.CompareTo("ForwardSlash") == 0 || (collision.name.CompareTo("SwordJump") == 0 && GameMaster.gm.GetCurPlayer().GetComponent<PlayerInput>().isJumping)) {
+        if (collision.name.CompareTo("ForwardSlash") == 0 || (collision.name.CompareTo("SwordJump") == 0 && GameMaster.gm.GetCurPlayer().GetComponent<PlayerInput>().isSwordJumping)) {
             move = true;
             GetComponent<BoxCollider2D>().enabled = false;
             for (int i = 0; i < animators.Length; i++) {
@@ -46,8 +44,7 @@ public class ChainTriggerScript : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D collision) {
-         Debug.Log("Hey2");
-        if (collision.name.CompareTo("SwordJump") == 0 && collision.GetComponent<SpriteRenderer>().enabled == true) {
+        if (collision.name.CompareTo("SwordJump") == 0 && GameMaster.gm.GetCurPlayer().GetComponent<PlayerInput>().isSwordJumping) {
             move = true;
             GetComponent<BoxCollider2D>().enabled = false;
             for (int i = 0; i < animators.Length; i++) {

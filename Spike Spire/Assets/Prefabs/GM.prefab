@@ -43,10 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1f145b24fe87c4e95b9f9a532f4384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virtualCam: {fileID: 5436127135554433462, guid: e1f9059b399fbb24a82745bcd9e3b71b,
-    type: 3}
   playerPrefab: {fileID: 1099972723621803894, guid: 62c161b59dd61784493d226245df5d3e,
     type: 3}
   spawnPoint: {fileID: 4863585223461382374, guid: 62fece433853b5f4a9c5e879f389b8e0,
     type: 3}
-  spawnDelay: 2
+  spawnDelay: 1
+  testSceneName: 
+  playerHasForwardSlash: 0

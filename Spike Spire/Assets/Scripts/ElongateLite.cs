@@ -5,6 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Slimmer version of the Elongate script with just
 /// the MoveAndScale method. Used for ElongatingCloserSpikes.
+/// ---DEPRECATED---
 /// </summary>
 public class ElongateLite : MonoBehaviour
 {
