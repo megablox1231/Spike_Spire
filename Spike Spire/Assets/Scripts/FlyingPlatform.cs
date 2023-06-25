@@ -1,31 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class FlyingPlatform : RaycastControllerSimple
-{
-	public LayerMask passengerMask;
-	public float xSpeed, ySpeed;
-	public bool isTimed;
-	public float timer;
+/// <summary>
+/// Controls flying platform that moves upon player
+/// standing on top.
+/// </summary>
+public class FlyingPlatform : RaycastControllerSimple {
+	[SerializeField] LayerMask passengerMask;
+	[SerializeField] float xSpeed, ySpeed;
+	[SerializeField] bool isTimed;
+	[SerializeField] float timer;
 
-	public Transform target; //TODO: make private and remove unneeded code when done testing
+    // the current player gameobject
+    Transform target;
 	PlayerInput targetInput;
-	bool hasPassenger, timerStarted;
+	Controller2D targetController;
+
+	Animator animator;
+	SpriteRenderer sprite;
+    AudioSource audioSrc;
+    bool hasPassenger, hadPassengerLastFrame, timerStarted;
+
+    Tweener pitchUp;
+	Tweener pitchDown;
 
 	public override void Start() {
 		base.Start();
-	}
+		animator = GetComponent<Animator>();
+		sprite = GetComponent<SpriteRenderer>();
+		audioSrc = GetComponent<AudioSource>();
+    }
 
-	void Update() {
+    void Update() {
 
 		UpdateRaycastOrigins();
-
 		CheckPassenger();
+
 		if (hasPassenger) {
-			if (isTimed && !timerStarted) {
+            animator.SetBool("hasPassenger", true);
+            StartBuzzing();
+
+			// start battery timer
+            if (isTimed && !timerStarted) {
 				timerStarted = true;
-				StartCoroutine("restartTimer");
+				StartCoroutine(BatteryTimer());
 			}
 
 			Vector3 velocity = CalculatePlatformMovement();
@@ -39,10 +59,19 @@ public class FlyingPlatform : RaycastControllerSimple
 				transform.Translate(velocity);
             }
 		}
+		else {
+            animator.SetBool("hasPassenger", false);
+			if (hadPassengerLastFrame) {
+				StopBuzzing();
+			}
+        }
+
+		hadPassengerLastFrame = hasPassenger;
 	}
 
     Vector3 CalculatePlatformMovement() {
-		float newX = transform.position.x;
+        // Platform can move left or right depending on player position
+        float newX = transform.position.x;
 		if (Mathf.Abs(target.position.x - transform.position.x) > 0.4) {
 			newX = Mathf.MoveTowards(transform.position.x, target.position.x, Time.deltaTime * xSpeed);
 		}
@@ -57,7 +86,9 @@ public class FlyingPlatform : RaycastControllerSimple
     }
 
     void MovePassenger(Vector3 velocity) {
-		targetInput.GetController2D().Move(velocity, true);
+		if (!GameMaster.gm.Restarting) {
+			targetController.Move(velocity, true);
+		}
 	}
 
     void CheckPassenger() {
@@ -75,6 +106,7 @@ public class FlyingPlatform : RaycastControllerSimple
 					target = GameMaster.gm.GetCurPlayer().transform;
 				}
 				targetInput = target.GetComponent<PlayerInput>();
+				targetController = target.GetComponent<Controller2D>();
 
 				return;
             }
@@ -84,11 +116,28 @@ public class FlyingPlatform : RaycastControllerSimple
         }
     }
 
-	IEnumerator restartTimer() {
+	IEnumerator BatteryTimer() {
 		yield return new WaitForSeconds(timer);
 
-		GetComponent<SpriteRenderer>().color = Color.red;
+		animator.SetBool("lowBattery", true);
+        audioSrc.DOPitch(0, 0.8f);
+		sprite.DOColor(Color.black, 0.8f);
 		yield return new WaitForSeconds(0.8f);
-		Destroy(gameObject);
+
+		enabled = false;
+		GetComponent<BoxCollider2D>().enabled = false;
 	}
+
+	void StartBuzzing() {
+		if (!audioSrc.isPlaying) {
+            audioSrc.Play();
+            audioSrc.DOPitch(0.6f, 0.5f).SetAutoKill(false).SetRecyclable(true);
+		}
+	}
+
+	void StopBuzzing() {
+        audioSrc.DOPitch(0, 0.5f).SetAutoKill(false).SetRecyclable(true).OnComplete(() => {
+            audioSrc.Stop();
+        });
+    }
 }

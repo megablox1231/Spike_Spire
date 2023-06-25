@@ -1,22 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
 
-public class SaveSystem
-{
+/// <summary>
+/// Controls persistant info about game progression including
+/// current scene, level, and if forward slash is active with JSON.
+/// </summary>
+public class SaveSystem {
 
-    private SaveData data;
-    private static string dataFilePath = Path.Combine(Application.persistentDataPath, "GameData.json");
+    SaveData data;
+    static string dataFilePath = Path.Combine(Application.persistentDataPath, "GameData.json");
 
     public SaveSystem() {
         data = new SaveData();
         SetProgress("Area_1", "CamTrigger1");
+        SetForwardSlash(false);
     }
 
     public void SetProgress(string area, string level) {
         data.area = area;
         data.level = level;
+    }
+
+    public void SetForwardSlash(bool forwardSlash) {
+        data.hasForwardSlash = forwardSlash;
     }
 
     public SaveData GetData() {
@@ -32,7 +38,6 @@ public class SaveSystem
         if (File.Exists(dataFilePath)) {
             string json = File.ReadAllText(dataFilePath);
             data = JsonUtility.FromJson<SaveData>(json);
-            Debug.Log(data.area + " " + data.level);
         }
     }
 
@@ -45,5 +50,6 @@ public class SaveSystem
     public class SaveData {
         public string area;
         public string level;
+        public bool hasForwardSlash;
     }
 }

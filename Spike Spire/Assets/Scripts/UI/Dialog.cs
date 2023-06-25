@@ -1,31 +1,29 @@
 ﻿using Doublsb.Dialog;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.Events;
 
+/// <summary>
+/// Handles dialog events including connecting dialog, activating player alert,
+/// and displyaing dialog.
+/// </summary>
 public class Dialog : MonoBehaviour {
 
-    [SerializeField]
-    private DialogManager dialogManager;
-    [SerializeField]
-    private GameObject printer;
-    [SerializeField]
-    private GameObject dialogAlert;
-    [SerializeField]
-    private TextAsset dialogFile;
-    [SerializeField]
-    private string fileSection;
-    [SerializeField]
-    private UnityEvent onEndEvent;
-    private GameObject curAlert;
+    [SerializeField] DialogManager dialogManager;
+    [SerializeField] GameObject printer;
+    [SerializeField] GameObject dialogAlert;
 
-    private bool inRange;
-    private bool inputConnected;
+    [SerializeField] TextAsset dialogFile;
+    [SerializeField] string fileSection;
 
-    private void OnTriggerEnter2D(Collider2D col) {
+    [SerializeField] UnityEvent onEndEvent;
+
+    GameObject curAlert;
+    bool inRange;
+    bool inputConnected;
+
+    void OnTriggerEnter2D(Collider2D col) {
         if (!inRange && col.tag == "Player") {
             if (curAlert == null) {
                 curAlert = Object.Instantiate(dialogAlert, GameMaster.gm.GetCurPlayer().transform);
@@ -39,7 +37,7 @@ public class Dialog : MonoBehaviour {
         }
     }
 
-    private void OnTriggerExit2D(Collider2D col) {
+    void OnTriggerExit2D(Collider2D col) {
         if (col.tag == "Player") {
             GameMaster.gm.GetCurPlayer().GetComponent<PlayerInput>().DisconnectDialog();
             inRange = false;
@@ -48,7 +46,7 @@ public class Dialog : MonoBehaviour {
         }
     }
 
-    private void StartDialog() {
+    void StartDialog() {
         printer.SetActive(true);
         List<DialogData> dialogDatas = DialogParser.ParseDialog(dialogManager, dialogFile, fileSection);
         dialogDatas.Last().Callback = () => OnDialogEnd();
@@ -57,15 +55,25 @@ public class Dialog : MonoBehaviour {
     }
 
     public void StartDialog(string fileSect) {
+        if (!inputConnected) {
+            GameMaster.gm.GetCurPlayer().GetComponent<PlayerInput>().ConnectContinueDialog(StartDialog, dialogManager);
+        }
+
         printer.SetActive(true);
         List<DialogData> dialogDatas = DialogParser.ParseDialog(dialogManager, dialogFile, fileSect);
         dialogDatas.Last().Callback = () => OnDialogEnd();
         dialogManager.Show(dialogDatas);
     }
 
-    private void OnDialogEnd() {
+    void OnDialogEnd() {
         GameMaster.gm.GetCurPlayer().GetComponent<PlayerInput>().EnableMovement();
-        GetComponent<PolygonCollider2D>().enabled = false;
+        PolygonCollider2D poly = GetComponent<PolygonCollider2D>();
+        if (poly != null) {
+            poly.enabled = false;
+        }
+        else {
+            GameMaster.gm.GetCurPlayer().GetComponent<PlayerInput>().DisconnectDialog();
+        }
         if (onEndEvent != null) {
             onEndEvent.Invoke();
         }

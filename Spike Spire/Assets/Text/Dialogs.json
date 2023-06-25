@@ -38,11 +38,11 @@
         },
         {
           "character": "Traveller",
-          "text": "I found the key to get through the door to the right, but trapped myself here in the process."
+          "text": "I found the key to get through the door over to the right, but trapped myself here in the process."
         },
         {
           "character": "Traveller",
-          "text": "I'd greatly appreciate it if you could find someone to help get me out of here. The view's actually quite nice, but I'd like to move on."
+          "text": "I'd appreciate it if you could find some way to get me out of here. The view's actually quite nice, but I'd like to move on."
         }
       ]
     },
@@ -68,7 +68,7 @@
         },
         {
           "character": "Traveller",
-          "text": "So many buttons though, which one goes up?..."
+          "text": "So many buttons though, which one goes to the top?..."
         }
       ]
     },
@@ -85,11 +85,24 @@
         },
         {
           "character": "Puddle",
-          "text": "I'm trying to get to the top of this place as a sort of capstone to my trip. Some helpful people pointed me to the elevators, but I think I misunderstood their instructions and crashed the cabin. (So embarrasing)"
+          "text": "I'm trying to get to the top of this place to finish off my trip. Some locals pointed me to the elevators, but I think I misunderstood their instructions and crashed the cabin."
         },
         {
           "character": "Puddle",
           "text": "I should go tell them what happened, you can go on ahead. Hopefully, next time we meet, it'll be at eye level."
+        }
+      ]
+    },
+    {
+      "id": "Contemplation",
+      "dialogTexts": [
+        {
+          "character": "TreasureHunter",
+          "text": "/wait:0.5//speed:1/..."
+        },
+        {
+          "character": "TreasureHunter",
+          "text": "/speed:init/Hope that guy doesn't find out I did that."
         }
       ]
     },
@@ -106,7 +119,7 @@
         },
         {
           "character": "TreasureHunter",
-          "text": "Oh, hello! Didn't see you there. (Must be one of the locals the traveller from earlier was talking about)"
+          "text": "Oh, hey! Didn't see you there. (Must be one of the locals that traveller from earlier was talking about)"
         },
         {
           "character": "TreasureHunter",
@@ -151,19 +164,19 @@
         },
         {
           "character": "FloorTri",
-          "text": "We don't have much interest in talking to a couple of tourists who sneak in through the back. Next time go through the front and we may be more friendly."
+          "text": "We try not to talk to tourists who take the back entrance."
         },
         {
           "character": "StandingTri",
-          "text": "Well, back to the topic on hand. This here is one of our most prized possessions, a primordial relic given to us by the divine itself."
+          "text": "Well, back to the topic on hand. This is one of our most prized possessions, a primordial relic given to us by the divine itself."
         },
         {
           "character": "Traveller",
-          "text": "Wow, didn't know you had an interest in history too traveler! (I also thought you were mute this entire time too)"
+          "text": "Wow, didn't know you had an interest in history too! (I also thought you were mute this entire time)"
         },
         {
           "character": "TreasureHunter",
-          "text": "Uhhhhhhhhhhhhh"
+          "text": "Uhhhhhhhhhhhhh..."
         },
         {
           "character": "Traveller",
@@ -180,6 +193,15 @@
         {
           "character": "TreasureHunter",
           "text": "Y-Yea... sounds good. (I think I need a new job)"
+        }
+      ]
+    },
+    {
+      "id": "Credits",
+      "dialogTexts": [
+        {
+          "character": "TreasureHunter",
+          "text": "/wait:1/So, about that whole elevator situation/wait:0.5//speed:1/.../wait:1//speed:init/ might've been my fault./wait:2.4//close/"
         }
       ]
     }

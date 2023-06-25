@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce97dee0f6ecd7f4d8b17367841df7e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 4863585223461382374, guid: 62fece433853b5f4a9c5e879f389b8e0,
-    type: 3}
+  spawnPoint: {x: 0, y: 0, z: 0}
   blocker: {fileID: 0}
   boundingShape: {fileID: 0}
+  levelColliders: {fileID: 0}
   locale: 0
 --- !u!58 &5952606845626623081
 CircleCollider2D:
@@ -100,7 +100,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5952606845626623077}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

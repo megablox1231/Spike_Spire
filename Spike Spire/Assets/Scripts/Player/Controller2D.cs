@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 
 /// <summary>
 /// Handles collisions by player raycasts and executes
@@ -12,8 +10,7 @@ public class Controller2D : RaycastController {
 	public float maxSlopeAngle = 80;
 
 	public CollisionInfo collisions;
-	[HideInInspector]
-	public Vector2 playerInput;
+	[HideInInspector] public Vector2 playerInput;
 
     public struct CollisionInfo {
         public bool above, below;
@@ -257,8 +254,7 @@ public class Controller2D : RaycastController {
 
     void UpdateDirectionFaced() {
         GetComponent<SpriteRenderer>().flipX = (collisions.faceDir == 1) ? false : true;
-        //TODO: change to non hardcoded number method
-		//flips the forward slash collider and jump collider to the other side
+		//flips the player's colliders to the other side
         slashCollider.transform.localPosition = (collisions.faceDir == 1) ? new Vector3(1.0682f, slashCollider.transform.localPosition.y, slashCollider.transform.localPosition.z)
 												: new Vector3(-1.0682f, slashCollider.transform.localPosition.y, slashCollider.transform.localPosition.z);
 		jumpCollider.transform.localPosition = (collisions.faceDir == 1) ? new Vector3(0.1555f, jumpCollider.transform.localPosition.y, jumpCollider.transform.localPosition.z)

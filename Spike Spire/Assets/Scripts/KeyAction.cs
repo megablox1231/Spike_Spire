@@ -1,17 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// Does all action that the keys do which is just opening doors right now.
+/// Unlocks given lockBlock upon collision.
 /// </summary>
-public class KeyAction : MonoBehaviour
-{
+public class KeyAction : MonoBehaviour {
 
-    public GameObject lockBlock;
+    [SerializeField] GameObject lockBlock;
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        Destroy(lockBlock);
+    void OnTriggerEnter2D(Collider2D collision) {
+        lockBlock.GetComponent<Animator>().enabled = true;
         Destroy(gameObject);
     }
 }

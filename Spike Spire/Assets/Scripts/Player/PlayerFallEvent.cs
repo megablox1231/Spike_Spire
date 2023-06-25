@@ -1,9 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFallEvent : MonoBehaviour
-{
+/// <summary>
+/// Disables player controls then plays animations and
+/// reenables contrls upon player colliding with floor.
+/// </summary>
+public class PlayerFallEvent : MonoBehaviour {
 
     public AnimationClip anim;
     public Animator[] reactiveObjects;
@@ -14,13 +16,6 @@ public class PlayerFallEvent : MonoBehaviour
     bool falling;
     bool returnControl;
 
-    void Start() {
-        player = GameMaster.gm.GetCurPlayer().GetComponent<PlayerInput>();
-        animator = player.GetComponent<Animator>();
-        controller = player.GetComponent<Controller2D>();
-    }
-
-    // Update is called once per frame
     void Update() {
         if (falling && controller.collisions.below) {
             animator.Play(anim.name);
@@ -36,12 +31,18 @@ public class PlayerFallEvent : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D() {
-        player.enabled = false;
-        falling = true;
+    void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.tag == "Player") {
+            player = collider.transform.parent.GetComponent<PlayerInput>();
+            animator = player.GetComponent<Animator>();
+            controller = player.GetComponent<Controller2D>();
+            player.enabled = false;
+            player.GetComponent<PlayerMovement>().ResetVelocity();
+            falling = true;
+        }
     }
 
-    private IEnumerator WaitForAnimation() {
+    IEnumerator WaitForAnimation() {
         yield return new WaitForSeconds(anim.length);
         returnControl = true;
     }

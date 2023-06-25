@@ -1,25 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AudioTrigger : MonoBehaviour
-{
+/// <summary>
+/// Plays AuidioClip on the AudioSource of the Main Camera.
+/// </summary>
+public class AudioTrigger : MonoBehaviour {
 
-    [SerializeField]
-    private AudioClip bgMusic;
+    [SerializeField] AudioClip bgMusic;
+    [SerializeField] float volume;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider) {
-        AudioSource audioSource = Camera.main.GetComponent<AudioSource>();
-        if (audioSource.clip != bgMusic) {
-            audioSource.clip = bgMusic;
-            audioSource.Play();
+    void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.tag == "Player") {
+            AudioSource audioSource = Camera.main.GetComponent<AudioSource>();
+            if (audioSource.clip != bgMusic) {
+                audioSource.clip = bgMusic;
+                audioSource.volume = volume;
+                audioSource.Play();
+            }
+            GetComponent<PolygonCollider2D>().enabled = false;
         }
-        GetComponent<PolygonCollider2D>().enabled = false;
     }
 }

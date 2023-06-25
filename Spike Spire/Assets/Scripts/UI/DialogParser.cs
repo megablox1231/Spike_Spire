@@ -4,6 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Accesses dialog data from specified JSON file.
+/// Data stored as Sentence instances in Dialog instances in one AllDialog instance.
+/// </summary>
 public class DialogParser
 {
     public static List<DialogData> ParseDialog(DialogManager dialogManager, TextAsset dialogFile, string fileSection) {

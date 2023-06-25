@@ -15,20 +15,11 @@ public class PlayerMovement : MonoBehaviour {
     public float moveSpeed = 1.5f;
 	public float maxYVelocity = 20;
 	public float forwardSlashSpeed = 3;
-	public float pauseGravTime; //how long gravity will be paused after forward slashing
-	public bool frozen = false; //stop player movement if true
+	public float pauseGravTime; // how long gravity will be paused after forward slashing
+	public bool frozen = false; // stop player movement if true
 
     float accelerationTimeAirborne = .1f;
 	float accelerationTimeGrounded = .1f;
-	
-
-	public Vector2 wallJumpClimb;
-	public Vector2 wallJumpOff;
-	public Vector2 wallLeap;
-
-	public float wallSlideSpeedMax = 3;
-	public float wallStickTime = .25f;
-	float timeToWallUnstick;
 
 	float gravity;
 	float maxJumpVelocity;
@@ -41,9 +32,7 @@ public class PlayerMovement : MonoBehaviour {
 	PlayerAudio playerAudio;
 
 	Vector2 directionalInput;
-	bool wallSliding;
-	int wallDirX;
-	bool pauseFrameSkip = false;	// TODO: skips updating animator conditions for one frame after unpausing because of unpause button slowness
+	bool pauseFrameSkip = false; // skips updating animator conditions for one frame after unpausing because of unpause button slowness
 
 	void Start() {
 		controller = GetComponent<Controller2D>();
@@ -56,8 +45,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Update() {
-        CalculateVelocity ();
-		//HandleWallSliding ();
+        CalculateVelocity();
 		if (!PauseMenu.gamePaused) {
 			if (!pauseFrameSkip) {
 				animator.SetFloat("Speed", Mathf.Abs(velocity.x));
@@ -84,48 +72,31 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
-	public void SetDirectionalInput (Vector2 input) {
+	public void SetDirectionalInput(Vector2 input) {
 		directionalInput = input;
     }
 
 	public void OnJumpInputDown() {
 		animator.SetBool("JumpButtonDown", true);
 		if (!GetComponentInChildren<PlayerStats>().invincible && controller.jumpCollider.IsTouchingLayers(controller.deadlySBMask) && !controller.collisions.below) {
-            GameMaster.KillPlayer(gameObject);
+            GameMaster.RestartPlayer(gameObject, Vector3.up);
         }
 
-		if (wallSliding) {
-			if (wallDirX == directionalInput.x) {
-				velocity.x = -wallDirX * wallJumpClimb.x;
-				velocity.y = wallJumpClimb.y;
-			}
-			else if (directionalInput.x == 0) {
-				velocity.x = -wallDirX * wallJumpOff.x;
-				velocity.y = wallJumpOff.y;
-			}
-			else {
-				velocity.x = -wallDirX * wallLeap.x;
-				velocity.y = wallLeap.y;
-			}
-		}
-		if (controller.jumpCollider.IsTouchingLayers(controller.SwordJumpMask) || controller.collisions.below) { //part of sword jump mechanic
-			if (!controller.collisions.below) {
-				playerAudio.ClashSound();
-			}
+		if (controller.jumpCollider.IsTouchingLayers(controller.SwordJumpMask) || controller.collisions.below) { // part of sword jump mechanic
 
             Collider2D[] brittles = new Collider2D[8];
-            if (controller.jumpCollider.OverlapCollider(controller.brittleContact, brittles) > 0) { //checks if hit a brittle spike block
+            if (controller.jumpCollider.OverlapCollider(controller.brittleContact, brittles) > 0) { // checks if hit a brittle spike block
+				playerAudio.BrittleSound();
                 foreach(Collider2D brittle in brittles) {
                     if (brittle != null) {
-                        if(brittle.transform.parent != null) {
-                            Destroy(brittle.transform.parent.gameObject);
-                        }
-                        else {
-                            Destroy(brittle.gameObject);    //TODO:change to call animation method later on
-                        }
+						brittle.transform.parent.GetComponent<Animator>().enabled = true;
                     }
                 }
             }
+			else if(!controller.collisions.below) { // true if not jumping from ground
+                playerAudio.ClashSound();
+            }
+
 			if (controller.collisions.slidingDownMaxSlope) {
 				if (directionalInput.x != -Mathf.Sign (controller.collisions.slopeNormal.x)) { // not jumping against max slope
 					velocity.y = maxJumpVelocity * controller.collisions.slopeNormal.y;
@@ -149,76 +120,49 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
-    public void OnForwardSlashCollision() {
+    public bool OnForwardSlashCollision() {
         if (!GetComponentInChildren<PlayerStats>().invincible && controller.slashCollider.IsTouchingLayers(controller.deadlySBMask)) {
-            GameMaster.KillPlayer(gameObject);
+			Vector2 pushDirection = (controller.collisions.faceDir == 1) ? Vector2.left : Vector2.right;
+            GameMaster.RestartPlayer(gameObject, pushDirection);
+			return true;
         }
 
         if (controller.slashCollider.IsTouchingLayers(controller.SlashMask)) {
             Collider2D[] brittles = new Collider2D[8];
             bool hitBrittles = false;
             if (controller.slashCollider.OverlapCollider(controller.brittleContact, brittles) > 0) { //checks if hit a brittle spike block
+				playerAudio.BrittleSound();
                 hitBrittles = true;
                 foreach (Collider2D brittle in brittles) {
                     if (brittle != null) {
-                        if (brittle.transform.parent != null) {
-                            Destroy(brittle.transform.parent.gameObject);
-                        }
-                        else {
-                            Destroy(brittle.gameObject);    //TODO:changed to call animation method later on
-                        }
+						brittle.transform.parent.GetComponent<Animator>().enabled = true;
                     }
                 }
             }
 
             if (!controller.collisions.below && !hitBrittles) {
+                playerAudio.ClashSound();
                 velocity.x = (controller.collisions.faceDir == 1) ? -forwardSlashSpeed : forwardSlashSpeed;
 				velocity.y = 0;	//needed so character does not float up while gravity paused
 				StartCoroutine(PauseGravity(pauseGravTime));
             }
+			return true;
         }
+		return false;
     }
-		
-
-	//void HandleWallSliding() {
-	//	wallDirX = (controller.collisions.left) ? -1 : 1;
-	//	wallSliding = false;
-	//	if ((controller.collisions.left || controller.collisions.right) && !controller.collisions.below && velocity.y < 0) {
-	//		wallSliding = true;
-
-	//		if (velocity.y < -wallSlideSpeedMax) {
-	//			velocity.y = -wallSlideSpeedMax;
-	//		}
-
-	//		if (timeToWallUnstick > 0) {
-	//			velocityXSmoothing = 0;
-	//			velocity.x = 0;
-
-	//			if (directionalInput.x != wallDirX && directionalInput.x != 0) {
-	//				timeToWallUnstick -= Time.deltaTime;
-	//			}
-	//			else {
-	//				timeToWallUnstick = wallStickTime;
-	//			}
-	//		}
-	//		else {
-	//			timeToWallUnstick = wallStickTime;
-	//		}
-
-	//	}
-
-	//}
 
 	void CalculateVelocity() {
-		float targetVelocityX = directionalInput.x * moveSpeed;
-		velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
-		velocity.y += gravity * Time.deltaTime;
-		if (Mathf.Abs(velocity.y) > maxYVelocity) {
-			velocity.y = maxYVelocity * Mathf.Sign(velocity.y);
+		if (!frozen) {
+			float targetVelocityX = directionalInput.x * moveSpeed;
+			velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+			velocity.y += gravity * Time.deltaTime;
+			if (Mathf.Abs(velocity.y) > maxYVelocity) {
+				velocity.y = maxYVelocity * Mathf.Sign(velocity.y);
+			}
 		}
 	}
 
-	//keeps gravity 0 for pauseTime amount
+	// keeps gravity 0 for pauseTime amount
 	IEnumerator PauseGravity(float pauseTime) {
 		float tempGrav = gravity;
 		gravity = 0;

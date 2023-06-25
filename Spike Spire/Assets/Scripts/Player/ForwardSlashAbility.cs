@@ -1,15 +1,16 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ForwardSlashAbility : MonoBehaviour
-{
+/// <summary>
+/// Controls forward slash action and collision handling.
+/// </summary>
+public class ForwardSlashAbility : MonoBehaviour {
 
     Collider2D fSlashCollider;
-
     PlayerMovement playerMove;
 
-    // Start is called before the first frame update
+    bool hitSucess;
+
     void Start()
     {
         fSlashCollider = GetComponent<Collider2D>();
@@ -19,18 +20,18 @@ public class ForwardSlashAbility : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        playerMove.OnForwardSlashCollision();
-        fSlashCollider.enabled = false; //hit what we wanted to hit, so ending fSlash early
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (!hitSucess && collision.collider.tag != "SafeBlock") {
+            hitSucess = playerMove.OnForwardSlashCollision();
+        }
     }
 
+    // used to be 0.3
     public IEnumerator DoForwardSlash() {
         fSlashCollider.enabled = true;
-        SpriteRenderer box = GetComponent<SpriteRenderer>();
-        //box.enabled = true;
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.24f);
         fSlashCollider.enabled = false;
-        //box.enabled = false;
+        hitSucess = false;
     }
 
 }

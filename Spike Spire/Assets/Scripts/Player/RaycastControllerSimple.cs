@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Calculates and holds raycasting origins and ray count.
+/// </summary>
 [RequireComponent(typeof(BoxCollider2D))]
 public class RaycastControllerSimple : MonoBehaviour
 {
@@ -9,18 +12,13 @@ public class RaycastControllerSimple : MonoBehaviour
 
 	public const float skinWidth = .015f;
 	const float dstBetweenRays = .25f;
-	[HideInInspector]
-	public int horizontalRayCount;
-	[HideInInspector]
-	public int verticalRayCount;
+	[HideInInspector] public int horizontalRayCount;
+	[HideInInspector] public int verticalRayCount;
 
-	[HideInInspector]
-	public float horizontalRaySpacing;
-	[HideInInspector]
-	public float verticalRaySpacing;
+	[HideInInspector] public float horizontalRaySpacing;
+	[HideInInspector] public float verticalRaySpacing;
 
-	[HideInInspector]
-	public BoxCollider2D collider;
+	[HideInInspector] public BoxCollider2D collider;
 	public RaycastOrigins raycastOrigins;
 
 	public virtual void Awake() {

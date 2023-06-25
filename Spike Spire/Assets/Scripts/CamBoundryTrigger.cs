@@ -1,11 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
 /// <summary>
-/// Moves the camera and character and activates blocker
-/// when transitioning to a new level.
+/// Moves the camera and character to the new level, activates 
+/// blocker and level colliders when transitioning to a new level.
 /// </summary>
 public class CamBoundryTrigger : MonoBehaviour {
     // isMoving - is the camera and/or player moving?
@@ -17,8 +15,7 @@ public class CamBoundryTrigger : MonoBehaviour {
     Vector3 triggerPos;
     GameObject curPlayer;
 
-    [HideInInspector]
-    public Vector3 spawnPoint;
+    [HideInInspector] public Vector3 spawnPoint;
     public GameObject blocker;
     public PolygonCollider2D boundingShape; // collider to which virtual camera is confined if it active in the level
     public GameObject levelColliders;
@@ -27,8 +24,8 @@ public class CamBoundryTrigger : MonoBehaviour {
 
     void Start() {
         BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-        // virtual camera confiner bounded to this trigger's bounding shape,
-        // enables lvl colliders, activates blocker (done because level reset)
+        // set virtual camera's bounding shape,
+        // enable lvl colliders, activate blocker (done because level reset)
         if (GameMaster.gm.IsCurTrigger(name)) {
             EnableLevelColliders();
             GameMaster.gm.SetBoundingShape(boundingShape);
@@ -37,7 +34,7 @@ public class CamBoundryTrigger : MonoBehaviour {
             }
 
             boxCollider.isTrigger = false;
-            this.enabled = false; //!!changed from disabling just script, may brake something!!
+            this.enabled = false;
         }
         cam = Camera.main.transform;
         triggerPos = transform.TransformPoint(boxCollider.offset);
@@ -48,38 +45,35 @@ public class CamBoundryTrigger : MonoBehaviour {
             cam.position = Vector3.MoveTowards(cam.position, desiredCamPos, 38f * Time.unscaledDeltaTime);
             // push player a bit to get past spike blocker
             curPlayer.transform.position = Vector3.MoveTowards(curPlayer.transform.position, movePlayerPos, 32f * Time.unscaledDeltaTime);
-            //Debug.Log("Cam done? " + (cam.position == desiredCamPos));
-            //Debug.Log("Player done? " + (curPlayer.transform.position == movePlayerPos));
-            //Debug.Log((cam.position - desiredCamPos).ToString() + "   " + 38 * Time.unscaledDeltaTime);
         }
         if (isMoving && ((cam.position - desiredCamPos).magnitude < (38f * Time.unscaledDeltaTime)) && curPlayer.transform.position == movePlayerPos) {
-           // Debug.Log((cam.position - desiredCamPos).ToString());
-            // So in order to eliminate any remaining difference
-            // make sure to set it to the correct target position
             cam.position = desiredCamPos;
-            Time.timeScale = 1f;
             isMoving = false;
         }
         if (isDone && !isMoving) { // both camera move and spawn move are done; needed in both update and trigger
+            if (blocker != null) {
+                blocker.SetActive(true);
+                blocker.GetComponent<Animator>().enabled = true; // not initially enabled so blocker does not animate when respawning
+                blocker.GetComponent<AudioSource>().Play();
+            }
+            Time.timeScale = 1f;
             Debug.Log("Done  " + (curPlayer.transform.position - movePlayerPos));
             if (boundingShape != null) {
                 GameMaster.gm.ChangeConfinerBounds(boundingShape);
             }
             GameMaster.gm.SetTrigger(name);
             EnableLevelColliders();
-            gameObject.SetActive(false);//TODO: make sure never happens too early
+            gameObject.SetActive(false);
         }
     }
 
     private IEnumerator OnTriggerEnter2D(Collider2D collision) {
         if (!collision.CompareTag("Player")) {
-            yield break; //exits the coroutine
+            yield break;
         }
 
         Time.timeScale = 0f;
-        // TODO: might need to disable invisible colliders of last level
         curPlayer = GameMaster.gm.GetCurPlayer();
-
         spawnPoint = transform.TransformPoint(GetComponent<CircleCollider2D>().offset);
         GameMaster.gm.spawnPoint.position = spawnPoint;
 
@@ -99,31 +93,27 @@ public class CamBoundryTrigger : MonoBehaviour {
         }
 
         isMoving = true;
-        desiredCamPos = transform.position;
-        desiredCamPos = new Vector3(desiredCamPos.x, desiredCamPos.y, -10);
-
-        
+        desiredCamPos = new Vector3(transform.position.x, transform.position.y, -10);
         GameMaster.gm.MakeCameraStatic();
-
-        yield return new WaitForSecondsRealtime(0.5f);
-
-        if (blocker != null) {
-            blocker.SetActive(true);
-        }
 
         isDone = true;
         if (isDone && !isMoving) { // both camera move and spawn move are done
-            Debug.Log("Done  " + (curPlayer.transform.position - movePlayerPos));
+            if (blocker != null) {
+                blocker.SetActive(true);
+                blocker.GetComponent<Animator>().enabled = true; // not initially enabled so blocker does not animate when respawning
+                blocker.GetComponent<AudioSource>().Play();
+            }
+            Time.timeScale = 1f;
             if (boundingShape != null) {
                 GameMaster.gm.ChangeConfinerBounds(boundingShape);
             }
             GameMaster.gm.SetTrigger(name);
             EnableLevelColliders();
-            gameObject.SetActive(false);//TODO: make sure never happens too early
+            gameObject.SetActive(false);
         }
     }
 
-    //Enables the death and invisible wall colliders of level parenting this object
+    //Enables the death and invisible wall colliders of level
     void EnableLevelColliders() {
         if (levelColliders != null) {
             BoxCollider2D[] coll = levelColliders.GetComponents<BoxCollider2D>();

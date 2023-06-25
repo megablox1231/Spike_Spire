@@ -1,38 +1,35 @@
 ﻿using UnityEngine;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
+/// <summary>
+/// Sets the scale factor of the CanvasScalar and toggles pixel perfect.
+/// </summary>
 [RequireComponent(typeof(CanvasScaler))]
 public class UIScaler : MonoBehaviour {
 
-    [SerializeField]
-    private int baseHeight = 270;
-    [SerializeField]
-    private int baseWidth = 480;
-    [SerializeField]
-    private int widestElement = 510;
+    [SerializeField] int baseHeight = 270;
+    [SerializeField] int baseWidth = 480;
+    [SerializeField] int widestElement = 510;
 
-    private RectTransform rectTransform;
-    private CanvasScaler scaler;
-    private int[] res = new int[2];
-    private int newheight = 0;
-    private int newwidth = 0;
+    [SerializeField] CanvasScaler scaler;
 
-    private void Start() {
-        scaler = GetComponent<CanvasScaler>();
-        rectTransform = GetComponent<RectTransform>();
+    int[] res = new int[2];
+    bool isPixelPerfect = true;
+
+    void Start() {
         ScaleUI();
+        SetPixelPerfectMode(isPixelPerfect);
     }
 
-    private void LateUpdate() {
-
-        if (res[0] != Screen.height || res[1] != Screen.width) {
-            //Debug.Log("Scale Changed");
+    void LateUpdate() {
+        if (isPixelPerfect && (res[0] != Screen.height || res[1] != Screen.width)) {
             ScaleUI();
         }
 
     }
 
-    private void ScaleUI() {
+    void ScaleUI() {
         scaler.scaleFactor = Mathf.FloorToInt((float)Screen.height / baseHeight);
         if (widestElement * scaler.scaleFactor > Screen.width) {
             scaler.scaleFactor = Mathf.FloorToInt((float)Screen.width / baseWidth);
@@ -40,5 +37,17 @@ public class UIScaler : MonoBehaviour {
 
         res[0] = Screen.height;
         res[1] = Screen.width;
+    }
+
+    public void SetPixelPerfectMode(bool pixelPerfect) {
+        isPixelPerfect = pixelPerfect;
+        if (isPixelPerfect) {
+            scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+            Camera.main.GetComponent<PixelPerfectCamera>().stretchFill = false;
+        }
+        else {
+            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            Camera.main.GetComponent<PixelPerfectCamera>().stretchFill = true;
+        }
     }
 }

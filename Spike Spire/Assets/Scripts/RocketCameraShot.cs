@@ -1,23 +1,28 @@
 ﻿using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketCameraShot : MonoBehaviour
-{
+/// <summary>
+/// Works with the camera, floor, and rocket to show the rocket
+/// approaching the player
+/// </summary>
+public class RocketCameraShot : MonoBehaviour {
 
     public GameObject dollyCam;
     public CinemachineDollyCart dollyCart;
-    public float cartFinalPos;    //position cart will be in when movement done
+    public float cartFinalPos; // position cart will be in when movement done
     bool camMoving = true;
 
     public GameObject rocketShooter;
     PlayerMovement player;
-
+    
+    // floor sections that open up
     public Transform floorLeft, floorRight;
     public float floorSpeed;
-    Vector3 floorLeftTgt, floorRightTgt;
+    Vector3 floorLeftTarget, floorRightTarget;
     bool moveFloor;
+
+    AudioSource floorAudio;
 
     
     void Awake() {
@@ -26,28 +31,23 @@ public class RocketCameraShot : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start() {
-        
-        player = GameMaster.gm.GetCurPlayer().GetComponent<PlayerMovement>();
-
-        floorLeftTgt = new Vector3(floorLeft.position.x - 14,
+        floorLeftTarget = new Vector3(floorLeft.position.x - 14,
                                    floorLeft.position.y, floorLeft.position.z);
-        floorRightTgt = new Vector3(floorRight.position.x + 14,
+        floorRightTarget = new Vector3(floorRight.position.x + 14,
                                     floorRight.position.y, floorRight.position.z);
+        floorAudio = gameObject.GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if (moveFloor) {
-            if (Mathf.Abs(floorLeft.position.x - floorLeftTgt.x) < 0.0001) {
+            if (Mathf.Abs(floorLeft.position.x - floorLeftTarget.x) < 0.0001) {
                 moveFloor = false;
             }
 
-            floorLeft.position = Vector3.MoveTowards(floorLeft.position, floorLeftTgt, 
+            floorLeft.position = Vector3.MoveTowards(floorLeft.position, floorLeftTarget, 
                                                      floorSpeed * Time.deltaTime);
-            floorRight.position = Vector3.MoveTowards(floorRight.position, floorRightTgt,
+            floorRight.position = Vector3.MoveTowards(floorRight.position, floorRightTarget,
                                                       floorSpeed * Time.deltaTime);
         }
         else if (camMoving && Mathf.Abs(dollyCart.m_Position - cartFinalPos) < 0.0001) {
@@ -57,16 +57,21 @@ public class RocketCameraShot : MonoBehaviour
         
     }
 
+    // Freezes the player and moves the camera down to the floor
     void OnTriggerEnter2D(Collider2D collider) {
+        player = GameMaster.gm.GetCurPlayer().GetComponent<PlayerMovement>();
+
         dollyCam.SetActive(true);
         dollyCart.gameObject.SetActive(true);
         player.frozen = true;
         GameMaster.gm.dollyShotDone = true;
     }
 
+    // Moves the floor, activates the rocket, then moves the camera back to the player
     IEnumerator ActivateRocket() {
         yield return new WaitForSeconds(1);
         moveFloor = true;
+        floorAudio.Play();
         while (moveFloor) {
             yield return null;
         }

@@ -1,54 +1,55 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Tilemaps;
-public class ChainTriggerScript : MonoBehaviour
-{
+﻿using UnityEngine;
 
-    [SerializeField]  private GameObject objects;
-    [SerializeField]  private float speed;
-    [SerializeField]  private int fallDist;
+/// <summary>
+/// Handles destorying chain object upon collision with player sword jump
+/// or forward slash, dropping the selected object.
+/// </summary>
+public class ChainTriggerScript : MonoBehaviour {
 
-    private Animator[] animators;
-    private bool move = false;
-    private Vector3 target;
+    [SerializeField] GameObject objects;
+    [SerializeField] float speed;
+    [SerializeField] int fallDist;
 
+    Animator[] chainAnimators;
+    bool moveObjects = false;
+    [HideInInspector] public bool fallDone;
+    Vector3 target;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        animators = GetComponentsInChildren<Animator>();
-        for (int i = 0; i < animators.Length; i++) {
-            animators[i].enabled = false;
-        }
+    void Start() {
+        chainAnimators = GetComponentsInChildren<Animator>();
         target = objects.transform.localPosition - new Vector3(0, fallDist, 0);
     }
     
-    private void Update() {
-        if (move) {
+    void Update() {
+        if (moveObjects) {
+            if (objects.transform.localPosition == target) {
+                fallDone = true;
+                moveObjects = false;
+            }
             objects.transform.localPosition = Vector3.MoveTowards(objects.transform.localPosition, target, speed*Time.deltaTime);
         }
     }
 
-    //collision is of the other gameObject
-    private void OnTriggerEnter2D(Collider2D collision) {
+    void OnTriggerEnter2D(Collider2D collision) {
         //break chain if hit by sword jump or forward slash
-        if (collision.name.CompareTo("ForwardSlash") == 0 || (collision.name.CompareTo("SwordJump") == 0 && GameMaster.gm.GetCurPlayer().GetComponent<PlayerInput>().isSwordJumping)) {
-            move = true;
+        if (collision.name.CompareTo("ForwardSlash") == 0 
+            || (collision.name.CompareTo("SwordJump") == 0 && GameMaster.gm.GetCurPlayer().GetComponent<PlayerInput>().isSwordJumping)) {
+            moveObjects = true;
             GetComponent<BoxCollider2D>().enabled = false;
-            for (int i = 0; i < animators.Length; i++) {
-                animators[i].enabled = true;
+            GetComponent<AudioSource>().Play();
+            for (int i = 0; i < chainAnimators.Length; i++) {
+                chainAnimators[i].enabled = true;
             }
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision) {
+    void OnTriggerStay2D(Collider2D collision) {
         if (collision.name.CompareTo("SwordJump") == 0 && GameMaster.gm.GetCurPlayer().GetComponent<PlayerInput>().isSwordJumping) {
-            move = true;
+            moveObjects = true;
             GetComponent<BoxCollider2D>().enabled = false;
-            for (int i = 0; i < animators.Length; i++) {
-                animators[i].enabled = true;
+            GetComponent<AudioSource>().Play();
+            for (int i = 0; i < chainAnimators.Length; i++) {
+                chainAnimators[i].enabled = true;
             }
         }
     }

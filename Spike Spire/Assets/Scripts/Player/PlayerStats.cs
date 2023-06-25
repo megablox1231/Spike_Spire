@@ -1,26 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
-{
+/// <summary>
+/// Tracks invincibility and handles collisions with body collider.
+/// </summary>
+public class PlayerStats : MonoBehaviour {
 
-    public int maxHealth = 50;
-    private int curHealth;
     public bool invincible;
 
-    void Start() {
-        curHealth = maxHealth;
-    }
-
-
-    void Update() {
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider) { //TODO: no player tag check, so might not work always
+    //Exists on child object so other colliders won't trigger this
+    private void OnCollisionEnter2D(Collision2D collision) {
+        Collider2D collider = collision.collider;
         if (collider.CompareTag("DeathBox") && !invincible) {
-            GameMaster.KillPlayer(this.transform.parent.gameObject);
+            GameMaster.RestartPlayer(this.transform.parent.gameObject, collider.Distance(GetComponent<Collider2D>()).normal);
         }
     }
 }

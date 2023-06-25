@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1741841758454771792}
   - component: {fileID: 1741841758454771793}
+  - component: {fileID: 2639572167894277992}
+  - component: {fileID: 2357129925768662311}
+  - component: {fileID: 3098773735138913908}
   m_Layer: 0
   m_Name: GM
   m_TagString: GameController
@@ -47,6 +50,94 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 4863585223461382374, guid: 62fece433853b5f4a9c5e879f389b8e0,
     type: 3}
-  spawnDelay: 1
   testSceneName: 
+  spawnDelay: 0
+  reloadSceneDelay: 0.7
+  deathPushSpeed: 5
+  deathTransition: {fileID: 0}
   playerHasForwardSlash: 0
+  dollyShotDone: 0
+  checkPoint: 
+--- !u!114 &2639572167894277992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741841758454771794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15fffe694f1394c4d85f6b083b926db8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rebindUIs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &2357129925768662311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741841758454771794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859ee76ca56394e9cb05b719862fa0ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numLiquid: 7
+  _width: 1
+  _height: 1
+  initialForce: 600
+  _prefab: {fileID: 1624607702375872, guid: 42337375f9d914eea973adb4ec631f17, type: 3}
+--- !u!20 &3098773735138913908
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741841758454771794}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 16.06
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 16
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022

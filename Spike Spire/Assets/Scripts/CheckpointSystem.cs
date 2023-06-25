@@ -1,9 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckpointSystem : MonoBehaviour
-{
+/// <summary>
+/// Checkpoint system for the rocket level that sets
+/// the rocket shooter after waiting for the set spawn delay.
+/// </summary>
+public class CheckpointSystem : MonoBehaviour {
 
     public GameObject rocketShooter;
 

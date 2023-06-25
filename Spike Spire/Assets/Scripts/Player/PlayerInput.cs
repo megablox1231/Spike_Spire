@@ -7,81 +7,73 @@ using Doublsb.Dialog;
 
 /// <summary>
 /// Initialized instance of PlayerControls, controls, and listens for feedback from input device to perform all movements and actions.
-/// Also plays sounds associated with actions.
+/// Also plays some sounds associated with actions.
 /// When jumping or slashing, their respective methods are called and their colliders are set to active.
 /// </summary>
 
 [RequireComponent (typeof (PlayerMovement))]
 public class PlayerInput : MonoBehaviour {
 
-    public float jumpDelay;
+    [SerializeField] float jumpCooldown;
+    [SerializeField] float fSlashCooldown;
 
-    [HideInInspector]
-    public bool hasForwardSlash;
-    [HideInInspector]
-    public bool isSwordJumping;
-    [HideInInspector]
-    public bool holdingDown;
+    [HideInInspector] public bool hasForwardSlash;
+    [HideInInspector] public bool isSwordJumping;
+    [HideInInspector] public bool holdingDown;
 
     PlayerControls controls;
 	PlayerMovement player;
     Controller2D controller;
+    CameraControl camControl;
     Animator animator;
     ForwardSlashAbility fSlashAbility;
 
+    Vector2 cameraInput;
     float directionalInput;
-    float prevTime;
+    float prevJumpTime;
+    float prevFSlashTime;
 
     Action DialogAction;
     DialogManager dialogManager;
 
-    void Awake() {
-        controls = new PlayerControls();
-        controls.Gameplay.Jump.performed += ctx => JumpInputDown();
-        controls.Gameplay.Jump.canceled += ctx => JumpInputUp();
-
-        controls.Gameplay.Move.performed += ctx => directionalInput = ctx.ReadValue<float>();
-        controls.Gameplay.Move.canceled += ctx => directionalInput = 0;
-
-        controls.Gameplay.ForwardSlash.performed += ctx => ForwardSlashInputDown();
-
-        controls.Gameplay.Down.performed += ctx => holdingDown = true;
-        controls.Gameplay.Down.canceled += ctx => holdingDown = false;
-    }
+    Action<InputAction.CallbackContext> ViewLevelAction;
 
     void Start () {
 		player = GetComponent<PlayerMovement> ();
         controller = GetComponent<Controller2D>();
+        camControl = GetComponent<CameraControl>();
         animator = GetComponent<Animator>();
         fSlashAbility = GetComponentInChildren<ForwardSlashAbility>();
 
-        hasForwardSlash = GameMaster.gm.playerHasForwardSlash;
-        prevTime = Time.time;
+        hasForwardSlash = GameMaster.gm.PlayerHasForwardSlash;
+        prevJumpTime = Time.time;
+        prevFSlashTime = Time.time;
 	}
 
 	void Update () {
         player.SetDirectionalInput(new Vector2(directionalInput, 0));
+        camControl.input = cameraInput;
     }
 
-    private void JumpInputDown() {
+    void JumpInputDown(InputAction.CallbackContext context) {
         //Time delay ensures jump can't be spammed
-        if (Time.time - prevTime >= jumpDelay) {
+        if (Time.time - prevJumpTime >= jumpCooldown) {
             player.OnJumpInputDown();
-            if (!controller.collisions.below && !PauseMenu.gamePaused) {
+            if (!controller.collisions.below && !PauseMenu.gamePaused && !GameMaster.gm.Restarting) {
                 isSwordJumping = true;
                 animator.Play("JumpSword");
-                StartCoroutine(FlashJumpCollider());
+                StartCoroutine(DelayedSwordJumpEnd());
             }
-            prevTime = Time.time;
+            prevJumpTime = Time.time;
         }
     }
 
-    private void JumpInputUp() {
+    void JumpInputUp(InputAction.CallbackContext context) {
         player.OnJumpInputUp();
     }
 
-    private void ForwardSlashInputDown() {
-        if (hasForwardSlash) {
+    void ForwardSlashInputDown(InputAction.CallbackContext context) {
+        if (hasForwardSlash && Time.time - prevFSlashTime >= fSlashCooldown) {
             if (directionalInput != 0) {
                 animator.Play("FSlash Run");
             }
@@ -89,23 +81,59 @@ public class PlayerInput : MonoBehaviour {
                 animator.Play("FSlash Idle");
             }
             StartCoroutine(fSlashAbility.DoForwardSlash());
+            prevFSlashTime = Time.time;
         }
     }
 
-
-    //Flashes the SpriteRenderer of the JumpCollider for a breif period of time
-    private IEnumerator FlashJumpCollider() {
+    IEnumerator DelayedSwordJumpEnd() {
         yield return new WaitForSeconds(.2f);
         isSwordJumping = false;
-
     }
 
-    private void OnEnable() {
+    void OnEnable() {
+        controls = InputManager.GetInputActions();
+        controls.Gameplay.Jump.performed += JumpInputDown;
+        controls.Gameplay.Jump.canceled += JumpInputUp;
+
+        controls.Gameplay.Move.performed += ctx => directionalInput = ctx.ReadValue<float>();
+        controls.Gameplay.Move.canceled += ctx => directionalInput = 0;
+
+        controls.Gameplay.ForwardSlash.performed += ForwardSlashInputDown;
+
+        controls.Gameplay.Down.performed += ctx => holdingDown = true;
+        controls.Gameplay.Down.canceled += ctx => holdingDown = false;
+
+        controls.Gameplay.MoveCamera.performed += ctx => cameraInput = ctx.ReadValue<Vector2>();
+        controls.Gameplay.MoveCamera.canceled += ctx => cameraInput = Vector2.zero;
+
         controls.Gameplay.Enable();
     }
 
-    private void OnDisable() {
+    void OnDisable() {
+        controls.Gameplay.Jump.performed -= JumpInputDown;
+        controls.Gameplay.Jump.canceled -= JumpInputUp;
+
+        controls.Gameplay.Move.performed -= ctx => directionalInput = ctx.ReadValue<float>();
+        controls.Gameplay.Move.canceled -= ctx => directionalInput = 0;
+
+        controls.Gameplay.ForwardSlash.performed -= ForwardSlashInputDown;
+
+        controls.Gameplay.Down.performed -= ctx => holdingDown = true;
+        controls.Gameplay.Down.canceled -= ctx => holdingDown = false;
+
+        controls.Gameplay.MoveCamera.performed -= ctx => cameraInput = ctx.ReadValue<Vector2>();
+        controls.Gameplay.MoveCamera.canceled -= ctx => cameraInput = Vector2.zero;
+
+        DisconnectLevelViwer();
+        DisconnectDialog();
         controls.Gameplay.Disable();
+
+        if (player != null) {
+            player.SetDirectionalInput(new Vector2(0, 0)); // disabled so no more directional input
+        }
+        if (camControl != null) {
+            camControl.input = Vector2.zero;
+        }
     }
 
     public void DisableMovement() {
@@ -120,29 +148,51 @@ public class PlayerInput : MonoBehaviour {
         controls.Gameplay.Move.Enable();
     }
 
-    public Controller2D GetController2D() {
-        return controller;
-
-    }
-
     public void ConnectDialog(Action Dialog, DialogManager manager) {
         DialogAction = Dialog;
         dialogManager = manager;
         controls.Gameplay.Interact.performed += StartDialog;
     }
 
-    public void DisconnectDialog() {
-        controls.Gameplay.Interact.performed -= StartDialog;
+    // Connects dialog action that skips the start dialog portion
+    public void ConnectContinueDialog(Action Dialog, DialogManager manager) {
+        DialogAction = Dialog;
+        dialogManager = manager;
+        controls.Gameplay.Interact.performed += ContinueDialog;
     }
 
-    private void StartDialog(InputAction.CallbackContext ctx) {
+    public void DisconnectDialog() {
+        if (DialogAction != null) {
+            controls.Gameplay.Interact.performed -= StartDialog;
+            controls.Gameplay.Interact.performed -= ContinueDialog;
+            DialogAction = null;
+        }
+    }
+
+    void StartDialog(InputAction.CallbackContext ctx) {
+        if (PauseMenu.gamePaused) { return; }
+
         DialogAction();
         controls.Gameplay.Interact.performed -= StartDialog;
         controls.Gameplay.Interact.performed += ContinueDialog;
         DisableMovement();
     }
 
-    private void ContinueDialog(InputAction.CallbackContext ctx) {
-        dialogManager.Click_Window();
+    void ContinueDialog(InputAction.CallbackContext ctx) {
+        if (!PauseMenu.gamePaused) {
+            dialogManager.Click_Window();
+        }
+    }
+
+    public void ConnectLevelViewer(Action<InputAction.CallbackContext> ViewLevel) {
+        ViewLevelAction = ViewLevel;
+        controls.Gameplay.Interact.performed += ViewLevelAction;
+    }
+
+    public void DisconnectLevelViwer() {
+        if (ViewLevelAction != null) {
+            controls.Gameplay.Interact.performed -= ViewLevelAction;
+            ViewLevelAction = null;
+        }
     }
 }

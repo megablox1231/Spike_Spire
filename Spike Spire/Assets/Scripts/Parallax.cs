@@ -1,20 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Moves this object alongside camera with parrallax effect.
+/// </summary>
 public class Parallax : MonoBehaviour {
 
-    public Vector2 camOffset;
-    public float parallexEffectX;
-    public float parallexEffectY;
-    public float PixelsPerUnit;
+    [SerializeField] Vector2 camOffset;
+    [SerializeField] float parallexEffectX;
+    [SerializeField] float parallexEffectY;
+    [SerializeField] float PixelsPerUnit;
 
-    [SerializeField]
-    private Bounds area;
+    [SerializeField] Bounds area; // optional bounding box that parralax effect will not move past
 
-    private GameObject cam;
-    private Vector2 startPos;
-    private Vector3 vel = Vector3.zero;
+    GameObject cam;
+    Vector2 startPos;
+    Vector3 vel = Vector3.zero;
 
     void Start() {
         cam = Camera.main.gameObject;
@@ -22,20 +22,16 @@ public class Parallax : MonoBehaviour {
     }
 
     void LateUpdate() {
-        if (area.Contains(cam.transform.position)) {
-            //float temp = (cam.transform.position.x * (1 - parallexEffect));
+        if (cam != null && area.Contains(cam.transform.position)) {
             float distX = ((cam.transform.position.x - camOffset.x) * parallexEffectX);
             float distY = ((cam.transform.position.y - camOffset.y) * parallexEffectY);
             transform.position = new Vector3(startPos.x + distX, startPos.y + distY, transform.position.z);
-            //transform.position = Vector3.SmoothDamp(transform.position, new Vector3(startPos.x + distX, startPos.y + distY, transform.position.z), ref vel, 0.01f);
-
-            //if (temp > startpos + length) startpos += length;
-            //else if (temp < startpos - length) startpos -= length;
         }
     }
 
-    private Vector3 PixelPerfectClamp(Vector3 moveVector, float pixelsPerUnit) {
-        Vector3 vectorInPixels = new Vector3(Mathf.CeilToInt(moveVector.x * pixelsPerUnit), Mathf.CeilToInt(moveVector.y * pixelsPerUnit), Mathf.CeilToInt(moveVector.z * pixelsPerUnit));
+    Vector3 PixelPerfectClamp(Vector3 moveVector, float pixelsPerUnit) {
+        Vector3 vectorInPixels = new Vector3(Mathf.CeilToInt(moveVector.x * pixelsPerUnit),
+            Mathf.CeilToInt(moveVector.y * pixelsPerUnit), Mathf.CeilToInt(moveVector.z * pixelsPerUnit));
         return vectorInPixels / pixelsPerUnit;
     }
 }

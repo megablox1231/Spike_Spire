@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 889816799908413277}
   - component: {fileID: 889816799908413274}
   - component: {fileID: 889816799908413275}
+  - component: {fileID: 45450984767191652}
   - component: {fileID: 889816799908413264}
   - component: {fileID: 3560585401961592505}
   - component: {fileID: 2651357850112970744}
@@ -313,10 +314,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c470cec77c3e15e4f998b1f098260ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpDelay: 0
+  jumpCooldown: 0
+  fSlashCooldown: 0
   hasForwardSlash: 0
   isSwordJumping: 0
   holdingDown: 0
+--- !u!114 &45450984767191652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889816799908413272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db19cba8f3893d642a48a564fa8d89d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlEnabled: 0
 --- !u!50 &889816799908413264
 Rigidbody2D:
   serializedVersion: 4
@@ -365,3 +380,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpLandSand: {fileID: 0}
+  hardLandMetal: {fileID: 0}
+  elevatorLand: {fileID: 0}
+  jump: {fileID: 0}
+  stepMetal: {fileID: 0}
+  swing: {fileID: 0}
+  clash: {fileID: 0}
+  brittle: {fileID: 0}
+  deathStart: {fileID: 0}
+  deathExplosion: {fileID: 0}

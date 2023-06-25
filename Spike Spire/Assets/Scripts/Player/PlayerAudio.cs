@@ -1,39 +1,52 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Metohds for playing all player related audio clips.
+/// </summary>
 public class PlayerAudio : MonoBehaviour {
 
-    [SerializeField]
-    private AudioClip jumpLandSand;
-    [SerializeField]
-    private AudioClip jump;
-    [SerializeField]
-    private AudioClip stepMetal;
-    [SerializeField]
-    private AudioClip swing;
-    [SerializeField]
-    private AudioClip clash;
+    [SerializeField] AudioClip jumpLandSand;
+    [SerializeField] AudioClip hardLandMetal;
+    [SerializeField] AudioClip elevatorLand;
+    [SerializeField] AudioClip jump;
+    [SerializeField] AudioClip stepMetal;
+    [SerializeField] AudioClip swing;
+    [SerializeField] AudioClip clash;
+    [SerializeField] AudioClip brittle;
+    [SerializeField] AudioClip deathStart;
+    [SerializeField] AudioClip deathExplosion;
 
-    private AudioSource audioSrc;
+    AudioSource audioSrc;
 
     void Start() {
         audioSrc = GetComponent<AudioSource>();
     }
 
-    private void JumpLandingSound() {
+    void JumpLandingSound() {
         audioSrc.pitch = 1;
         audioSrc.clip = jumpLandSand;
         audioSrc.Play();
     }
 
-    private void JumpSound() {
+    void HardLandingMetalSound() {
+        audioSrc.pitch = 1;
+        audioSrc.clip = hardLandMetal;
+        audioSrc.Play();
+    }
+
+    void ElevatorLandingSound() {
+        audioSrc.pitch = 1;
+        audioSrc.clip = elevatorLand;
+        audioSrc.Play();
+    }
+
+    void JumpSound() {
         audioSrc.pitch = 1;
         audioSrc.clip= jump;
         audioSrc.Play();
     }
 
-    private void StepSound() {
+    void StepSound() {
         audioSrc.pitch = 1;
         audioSrc.clip = stepMetal;
         audioSrc.Play();
@@ -48,6 +61,24 @@ public class PlayerAudio : MonoBehaviour {
     public void ClashSound() {
         audioSrc.pitch = Random.Range(0.95f, 1.05f);
         audioSrc.clip = clash;
+        audioSrc.Play();
+    }
+
+    public void BrittleSound() {
+        audioSrc.pitch = 1;
+        audioSrc.clip = brittle;
+        audioSrc.Play();
+    }
+
+    public void DeathStartSound() {
+        audioSrc.pitch = 1;
+        audioSrc.clip = deathStart;
+        audioSrc.Play();
+    }
+
+    public void DeathExplosionSound() {
+        audioSrc.pitch = 1;
+        audioSrc.clip = deathExplosion;
         audioSrc.Play();
     }
 }
